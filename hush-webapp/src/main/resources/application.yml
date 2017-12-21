@@ -1,0 +1,13 @@
+eureka:
+  instance:
+    prefer-ip-address: true #是否注册ip到eureka
+  client:
+    healthcheck:
+      enabled: true #eureka将健康检查交给actuator
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+feign:
+  hystrix:
+    enabled: true #开启hystrix支持, 降级处理配置
+

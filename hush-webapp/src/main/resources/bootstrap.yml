@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: hush-webapp
+
+server:
+  port: 9000 #9000-9003作为一组webapp服务的集群端口

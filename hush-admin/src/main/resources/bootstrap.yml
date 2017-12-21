@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: hush-admin
+
+server:
+  port: 9005  #9005-9008作为一组admin服务的集群端口
