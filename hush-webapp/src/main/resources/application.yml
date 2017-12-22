@@ -10,4 +10,20 @@ eureka:
 feign:
   hystrix:
     enabled: true #开启hystrix支持, 降级处理配置
+  compression:
+    request:
+      enabled: true #开启请求gzip压缩
+    response:
+      enabled: true #开启响应gzip压缩
+  client:
+    config:
+      default:
+        loggerLevel: headers #默认feign日志级别
 
+logging:
+  level:
+    com:
+      lawrence:
+        hush:
+          restapi:
+            ServiceClient: debug #ServiceClient客户端接口的日志级别

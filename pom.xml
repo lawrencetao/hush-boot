@@ -39,6 +39,8 @@
         <lombok.version>1.16.18</lombok.version>
         <fastjson.version>1.2.31</fastjson.version>
 
+        <commons-lang3.version>3.6</commons-lang3.version>
+
     </properties>
 
 
@@ -65,6 +67,13 @@
     <!-- 仅声明依赖 -->
     <dependencyManagement>
         <dependencies>
+
+            <!-- commons系列依赖 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
 
             <!-- spring-cloud系列依赖 -->
             <dependency>
