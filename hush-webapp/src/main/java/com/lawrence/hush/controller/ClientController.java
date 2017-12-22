@@ -3,6 +3,7 @@ package com.lawrence.hush.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.lawrence.hush.restapi.ServiceClient;
 import com.lawrence.hush.util.RestHttpUtil;
+import com.lawrence.hush.util.StringUtil;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +22,10 @@ public class ClientController {
     private RestHttpUtil restHttpUtil;
 
     @RequestMapping("/feignClient")
-    public String client() {
+    public String client(String type) {
+        if (StringUtil.isNull(type)) {
+            type = "1";
+        }
 
         System.out.println("hush-webapp请求hush-admin服务: /service");
 
@@ -29,7 +33,7 @@ public class ClientController {
         json.put("test", "json");
         String cookie = "SESSION=" + UUID.randomUUID();
 
-        return serviceClient.service("lawrence", cookie, json);
+        return serviceClient.service(type, cookie, json);
     }
 
     @RequestMapping("/restClient")

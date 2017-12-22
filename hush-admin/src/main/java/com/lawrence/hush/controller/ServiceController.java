@@ -24,11 +24,25 @@ public class ServiceController {
 
     @RequestMapping("/service")
     public String service(HttpServletRequest request, @RequestBody JSONObject json) {
+        String type = request.getParameter("type");
 
-        System.out.println(request.getParameter("name"));
+        System.out.println(type);
         System.out.println(request.getHeader("Content-Type"));
         System.out.println(request.getHeader("Cookie"));
         System.out.println(json);
+
+        redisTemplate.opsForValue().set("test", "test");
+
+        double db = Math.random();
+        try {
+            if ("0".equals(type)) {
+                Thread.sleep(6000);
+            } else {
+                Thread.sleep(3000);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         ServiceInstance instance = client.getLocalServiceInstance();
 

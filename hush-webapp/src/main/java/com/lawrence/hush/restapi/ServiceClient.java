@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 public interface ServiceClient {
 
     @RequestMapping(value = "/service", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
-    String service(@RequestParam("name") String name, @RequestHeader("Cookie") String cookie, @RequestBody JSONObject json);
+    String service(@RequestParam("type") String type, @RequestHeader("Cookie") String cookie, @RequestBody JSONObject json);
 
 }
 

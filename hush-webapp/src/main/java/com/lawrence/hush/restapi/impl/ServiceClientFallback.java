@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class ServiceClientFallback implements ServiceClient {
 
     @Override
-    public String service(String name, String cookie, JSONObject json) {
+    public String service(String type, String cookie, JSONObject json) {
 
         return "hush-admin服务rest请求失败";
     }
