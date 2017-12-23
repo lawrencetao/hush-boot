@@ -18,7 +18,25 @@ feign:
   client:
     config:
       default:
+        connectTimeout: 5000
+        readTimeout: 5000
         loggerLevel: headers #默认feign日志级别
+
+ribbon:
+  eager-load:
+    enabled: true
+    clients: hush-webapp
+  MaxAutoRetries: 1 #相同服务实例重试次数, 不含首次
+  MaxAutoRetriesNextServer: 1 #切换服务实例次数
+  OkToRetryOnAllOperations: true #所有操作都进行重试, 包括SocketTimeout
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000 #hystrix超时时间, 断路
 
 logging:
   level:

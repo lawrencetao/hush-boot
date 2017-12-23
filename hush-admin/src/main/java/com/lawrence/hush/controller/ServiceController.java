@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Random;
 
 @RestController
 public class ServiceController {
@@ -22,32 +23,42 @@ public class ServiceController {
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
 
+    /**
+     * 服务提供方法
+     *
+     * @param request, json
+     * @return String
+     */
     @RequestMapping("/service")
     public String service(HttpServletRequest request, @RequestBody JSONObject json) {
         String type = request.getParameter("type");
 
-        System.out.println(type);
-        System.out.println(request.getHeader("Content-Type"));
-        System.out.println(request.getHeader("Cookie"));
-        System.out.println(json);
-
-        redisTemplate.opsForValue().set("test", "test");
-
         double db = Math.random();
         try {
-            if ("0".equals(type)) {
+            if ("0".equals(type)) {// 必定超时
                 Thread.sleep(6000);
-            } else {
+            } else if ("1".equals(type)) {// 不超时
                 Thread.sleep(3000);
+            } else {// 随机是否超时
+                long i =  new Random().nextInt(7500);
+
+                System.out.println("延迟时间: " + i);
+
+                Thread.sleep(i);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        ServiceInstance instance = client.getLocalServiceInstance();
+        System.out.println("Param: " + type);
+        System.out.println("Content-Type: " + request.getHeader("Content-Type"));
+        System.out.println("Cookie: " + request.getHeader("Cookie"));
+        System.out.println("RequestBody: " + json);
 
+        redisTemplate.opsForValue().set("test", "test");
+
+        ServiceInstance instance = client.getLocalServiceInstance();
         System.out.println(instance.getHost() + ":" + instance.getPort() + " | " + instance.getServiceId());
-        System.out.println("hush-admin服务: /servic被client请求");
 
         return "hush-admin服务: /service返回";
     }

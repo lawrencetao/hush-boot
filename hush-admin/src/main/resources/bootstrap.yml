@@ -1,32 +1,6 @@
 spring:
   application:
     name: hush-admin
-  profiles:
-    active: admin9005
-
----
-spring:
-  profiles: admin9005
 
 server:
   port: 9005  #9005-9008作为一组admin服务的集群端口
----
-spring:
-  profiles: admin9006
-
-server:
-  port: 9006  #9005-9008作为一组admin服务的集群端口
-
----
-spring:
-  profiles: admin9007
-
-server:
-  port: 9007  #9005-9008作为一组admin服务的集群端口
-
----
-spring:
-  profiles: admin9008
-
-server:
-  port: 9008  #9005-9008作为一组admin服务的集群端口

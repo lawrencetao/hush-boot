@@ -21,26 +21,29 @@ public class ClientController {
     @Resource
     private RestHttpUtil restHttpUtil;
 
+    /**
+     * feign实现client调用服务
+     *
+     * @param type
+     * @return String
+     */
     @RequestMapping("/feignClient")
     public String client(String type) {
-        if (StringUtil.isNull(type)) {
-            type = "1";
-        }
-
-        System.out.println("hush-webapp请求hush-admin服务: /service");
-
         JSONObject json = new JSONObject();
         json.put("test", "json");
         String cookie = "SESSION=" + UUID.randomUUID();
 
-        return serviceClient.service(type, cookie, json);
+        return serviceClient.service(StringUtil.isNull(type) ? "-1" : type, cookie, json);
     }
 
+    /**
+     * ribbon通过restTemplate实现client调用服务
+     *
+     * @param type
+     * @return String
+     */
     @RequestMapping("/restClient")
-    public String test() {
-
-        System.out.println("hush-webapp请求hush-admin服务: /service");
-
+    public String test(String type) {
         JSONObject json = new JSONObject();
         json.put("test", "json");
         String cookie = "SESSION=" + UUID.randomUUID();
@@ -48,10 +51,20 @@ public class ClientController {
         Map<String, String> headers = new HashMap<>();
         headers.put("Cookie", cookie);
 
-        ResponseEntity<String> responseEntity = restHttpUtil.restPost("http://hush-admin/service?name=lawrence",
-                null, headers, json, "application/json; charset=utf-8");
+        Map<String, String> uriVeriables = new HashMap<>();
+        uriVeriables.put("type", StringUtil.isNull(type) ? "-1" : type);
 
-        return responseEntity.getBody();
+        ResponseEntity<String> responseEntity;
+        try {
+            responseEntity = restHttpUtil.restPost("http://hush-admin/service?type={type}",
+                    uriVeriables, headers, json, "application/json; charset=utf-8");
+
+            return responseEntity.getBody();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return "调用hush-admin服务失败: " + e.getMessage();
+        }
     }
 
 }
