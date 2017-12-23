@@ -25,6 +25,7 @@
         <module>hush-registry</module>
         <module>hush-webapp</module>
         <module>hush-admin</module>
+        <module>hush-config</module>
     </modules>
 
     <!-- 版本管理 -->
@@ -40,6 +41,7 @@
         <fastjson.version>1.2.31</fastjson.version>
 
         <commons-lang3.version>3.6</commons-lang3.version>
+        <svnkit.version>1.9.0</svnkit.version>
 
     </properties>
 
@@ -68,13 +70,6 @@
     <dependencyManagement>
         <dependencies>
 
-            <!-- commons系列依赖 -->
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>${commons-lang3.version}</version>
-            </dependency>
-
             <!-- spring-cloud系列依赖 -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -82,6 +77,20 @@
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <!-- commons系列依赖 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+
+            <!-- svnkit依赖 -->
+            <dependency>
+                <groupId>org.tmatesoft.svnkit</groupId>
+                <artifactId>svnkit</artifactId>
+                <version>${svnkit.version}</version>
             </dependency>
 
         </dependencies>

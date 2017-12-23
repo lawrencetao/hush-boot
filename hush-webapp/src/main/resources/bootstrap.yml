@@ -1,6 +1,19 @@
 spring:
   application:
     name: hush-webapp
+  cloud:
+    config:
+      fail-fast: true #快速响应获取配置是否正常
+      discovery:
+        enabled: true
+        service-id: hush-config
+      label: master #git分支
 
 server:
   port: 9000 #9000-9003作为一组webapp服务的集群端口
+
+eureka:
+  instance:
+    prefer-ip-address: true #是否注册ip到eureka
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
