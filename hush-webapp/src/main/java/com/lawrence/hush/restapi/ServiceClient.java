@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.*;
 @FeignClient(name = "hush-admin", fallbackFactory = ServiceClientFallbackFactory.class)
 public interface ServiceClient {
 
-    @RequestMapping(value = "/service", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/test/service", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
     String service(@RequestParam("type") String type, @RequestHeader("Cookie") String cookie, @RequestBody JSONObject json);
+
+    @RequestMapping(value = "/test/config", method = RequestMethod.GET)
+    String config();
 
 }
 
@@ -23,7 +26,20 @@ class ServiceClientFallbackFactory implements FallbackFactory<ServiceClient> {
     @Override
     public ServiceClient create(Throwable cause) {
 
-        return (type, cookie, json) -> "调用hush-admin服务失败: " + cause.getMessage();
+        return new ServiceClient() {
+
+            @Override
+            public String service(String type, String cookie, JSONObject json) {
+
+                return "调用hush-admin服务: /test/service失败, " + cause.getMessage();
+            }
+
+            @Override
+            public String config() {
+
+                return "调用hush-admin服务: /test/config, " + cause.getMessage();
+            }
+        };
     }
 }
 

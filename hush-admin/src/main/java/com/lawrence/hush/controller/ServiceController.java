@@ -1,9 +1,12 @@
 package com.lawrence.hush.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.lawrence.hush.util.LogUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Random;
 
+@RefreshScope
 @RestController
+@RequestMapping("/test")
 public class ServiceController {
 
     @Autowired
@@ -24,7 +29,7 @@ public class ServiceController {
     private RedisTemplate<String, String> redisTemplate;
 
     /**
-     * 服务提供方法
+     * 验证feign和ribbon-restTemplate服务提供方法
      *
      * @param request, json
      * @return String
@@ -42,7 +47,7 @@ public class ServiceController {
             } else {// 随机是否超时
                 long i =  new Random().nextInt(7500);
 
-                System.out.println("延迟时间: " + i);
+                LogUtil.info(getClass(), "延迟时间: " + i);
 
                 Thread.sleep(i);
             }
@@ -50,17 +55,35 @@ public class ServiceController {
             e.printStackTrace();
         }
 
-        System.out.println("Param: " + type);
-        System.out.println("Content-Type: " + request.getHeader("Content-Type"));
-        System.out.println("Cookie: " + request.getHeader("Cookie"));
-        System.out.println("RequestBody: " + json);
+        LogUtil.info(getClass(), "Param: " + type + "\n" +
+                "Content-Type: " + request.getHeader("Content-Type") + "\n" +
+                "Cookie: " + request.getHeader("Cookie") + "\n" +
+                "RequestBody: " + json);
 
         redisTemplate.opsForValue().set("test", "test");
 
         ServiceInstance instance = client.getLocalServiceInstance();
-        System.out.println(instance.getHost() + ":" + instance.getPort() + " | " + instance.getServiceId());
+        LogUtil.info(getClass(), instance.getHost() + ":" + instance.getPort() + " | " + instance.getServiceId());
 
         return "hush-admin服务: /service返回";
+    }
+
+    @Value("${hush-admin.dynamic.param}")
+    private String param;
+
+    /**
+     * 获取可动态刷新的配置
+     */
+    @RequestMapping("/config")
+    public JSONObject config(HttpServletRequest request) {
+
+        LogUtil.info(getClass(), "配置param: " + param);
+
+        JSONObject json = new JSONObject();
+        json.put("param", param);
+        json.put("word", "中文");
+
+        return json;
     }
 
 }

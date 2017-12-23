@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
+@RequestMapping("/test")
 public class ClientController {
 
     @Resource
@@ -43,7 +44,7 @@ public class ClientController {
      * @return String
      */
     @RequestMapping("/restClient")
-    public String test(String type) {
+    public String rest(String type) {
         JSONObject json = new JSONObject();
         json.put("test", "json");
         String cookie = "SESSION=" + UUID.randomUUID();
@@ -56,7 +57,7 @@ public class ClientController {
 
         ResponseEntity<String> responseEntity;
         try {
-            responseEntity = restHttpUtil.restPost("http://hush-admin/service?type={type}",
+            responseEntity = restHttpUtil.restPost("http://hush-admin/test/service?type={type}",
                     uriVeriables, headers, json, "application/json; charset=utf-8");
 
             return responseEntity.getBody();
@@ -65,6 +66,18 @@ public class ClientController {
 
             return "调用hush-admin服务失败: " + e.getMessage();
         }
+    }
+
+    /**
+     * 获取admin动态刷新配置
+     *
+     * @param type
+     * @return String
+     */
+    @RequestMapping("/config")
+    public String config(String type) {
+
+        return serviceClient.config();
     }
 
 }

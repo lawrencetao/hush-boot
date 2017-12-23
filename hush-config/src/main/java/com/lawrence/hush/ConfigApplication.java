@@ -1,4 +1,4 @@
-package com.lawrence.hush.hushconfig;
+package com.lawrence.hush;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
