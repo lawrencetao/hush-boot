@@ -1,0 +1,24 @@
+eureka:
+  client:
+    healthcheck:
+      enabled: true #eureka将健康检查交给actuator
+
+spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: lawrence
+  rabbitmq:
+    virtual-host: /
+    host: 127.0.0.1
+    port: 5672
+    username: lawrence
+    password: lawrence
+
+hush-admin:
+  dynamic:
+    param: lawrence
+
+management:
+  security:
+    enabled: false #关闭refresh的认证

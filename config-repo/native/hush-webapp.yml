@@ -1,0 +1,51 @@
+eureka:
+  client:
+    healthcheck:
+      enabled: true #eureka将健康检查交给actuator
+
+spring:
+  rabbitmq:
+    virtual-host: /
+    host: 127.0.0.1
+    port: 5672
+    username: lawrence
+    password: lawrence
+
+feign:
+  hystrix:
+    enabled: true #开启hystrix支持, 降级处理配置
+  compression:
+    request:
+      enabled: true #开启请求gzip压缩
+    response:
+      enabled: true #开启响应gzip压缩
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: headers #默认feign日志级别
+
+ribbon:
+  eager-load:
+    enabled: true
+    clients: hush-admin
+  MaxAutoRetries: 1 #相同服务实例重试次数, 不含首次
+  MaxAutoRetriesNextServer: 1 #切换服务实例次数
+  OkToRetryOnAllOperations: true #所有操作都进行重试, 包括SocketTimeout
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000 #hystrix超时时间, 断路
+
+logging:
+  level:
+    com:
+      lawrence:
+        hush:
+          restapi:
+            ServiceClient: debug #ServiceClient客户端接口的日志级别
