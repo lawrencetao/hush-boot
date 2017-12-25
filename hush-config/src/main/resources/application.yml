@@ -13,7 +13,6 @@ eureka:
 management:
   security:
     enabled: false #关闭认证
-  port: 18861
   context-path: /config-manage
 
 security:
