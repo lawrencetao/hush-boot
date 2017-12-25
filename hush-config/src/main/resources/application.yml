@@ -7,7 +7,36 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
 
+management:
+  security:
+    enabled: false
+
 spring:
+  profiles:
+    active: native
+
+
+
+---
+spring:
+  profiles: native
+  rabbitmq:
+    virtual-host: /
+    host: 127.0.0.1
+    port: 5672
+    username: lawrence
+    password: lawrence
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: config-repo/native
+
+
+
+---
+spring:
+  profiles: git
   cloud:
     config:
       server:
