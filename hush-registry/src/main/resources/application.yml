@@ -6,4 +6,9 @@ eureka:
     register-with-eureka: false #是否注册自身到eureka
     fetch-registry: false #是否开启检索同步
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://${security.user.name}:${security.user.password}@${eureka.instance.hostname}:${server.port}/eureka/
+
+security:
+  user:
+    name: lawrence
+    password: 94395fc68e6db20640101d2e443455c39e8ee44a4871ff81

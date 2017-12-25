@@ -3,6 +3,9 @@ eureka:
     healthcheck:
       enabled: true #eureka将健康检查交给actuator
 
+management:
+  context-path: /webapp-manage
+
 spring:
   rabbitmq:
     virtual-host: /
