@@ -3,8 +3,8 @@ spring:
     name: hush-admin
   cloud:
     config:
-      username: ${security.config.name}
-      password: ${security.config.password}
+      username: ${hush-boot.config.name}
+      password: ${hush-boot.config.password}
       fail-fast: true #快速响应获取配置是否正常
       discovery:
         enabled: true
@@ -17,10 +17,14 @@ server:
 eureka:
   instance:
     prefer-ip-address: true #是否注册ip到eureka
+  client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://${hush-boot.eureka.name}:${hush-boot.eureka.password}@localhost:8761/eureka/
 
-security:
+hush-boot:
   config:
     name: lawrence
     password: lawrence-config
+  eureka:
+    name: lawrence
+    password: lawrence-registry

@@ -5,21 +5,26 @@ eureka:
     healthcheck:
       enabled: true #eureka将健康检查交给actuator
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://${hush-boot.eureka.name}:${hush-boot.eureka.password}@localhost:8761/eureka/
 
 management:
   context-path: /config-manage
 
 endpoints:
   bus:
-    enabled: true #开启bus操作认证
+    enabled: true #开启bus操作
   shutdown:
-    enabled: true #开启shutdown操作认证
+    enabled: true #开启shutdown操作
 
 security:
   user:
     name: lawrence
     password: lawrence-config
+
+hush-boot:
+  eureka:
+    name: lawrence
+    password: lawrence-registry
 
 spring:
   profiles:

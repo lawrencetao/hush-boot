@@ -29,6 +29,12 @@
 			<artifactId>spring-cloud-starter-eureka-server</artifactId>
 		</dependency>
 
+        <!-- spring-boot系列依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
 	</dependencies>
 
 </project>
