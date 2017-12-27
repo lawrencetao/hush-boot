@@ -19,6 +19,8 @@
 	<url>https://github.com/lawrencetao/hush-boot</url>
 	<description>hush-config配置中心</description>
 
+    <!-- TODO 依赖 ============================================================ -->
+
 	<dependencies>
 
 		<!-- spring-cloud系列依赖 -->
@@ -36,18 +38,10 @@
         </dependency>
 
 		<!-- spring-boot系列依赖 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
 
         <!-- svnkit依赖 -->
         <dependency>

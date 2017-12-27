@@ -1,24 +1,25 @@
 eureka:
   instance:
     prefer-ip-address: true #是否注册ip到eureka
-    metadata-map:
-      user.name: ${security.user.name}
-      user.password: ${security.user.password}
   client:
     healthcheck:
       enabled: true #eureka将健康检查交给actuator
     service-url:
-      defaultZone: http://${security.user.name}:${security.user.password}@localhost:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
 
 management:
-  security:
-    enabled: false #关闭认证
   context-path: /config-manage
+
+endpoints:
+  bus:
+    enabled: true #开启bus操作认证
+  shutdown:
+    enabled: true #开启shutdown操作认证
 
 security:
   user:
     name: lawrence
-    password: 94395fc68e6db20640101d2e443455c39e8ee44a4871ff81
+    password: lawrence-config
 
 spring:
   profiles:
