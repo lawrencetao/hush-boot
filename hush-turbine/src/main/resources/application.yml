@@ -19,7 +19,8 @@ hush-boot:
     password: lawrence-registry
 
 turbine:
-  instanceUrlSuffix: /hush-management/hystrix.stream
+  aggregator:
+    cluster-config: HUSH-WEBAPP #监控链接turbine.stream中的cluster参数
+  instanceUrlSuffix: /hush-management/hystrix.stream #客户端集群设置的uri路径
   app-config: hush-webapp
-  cluster-name-expression: new String("default")
   combine-host-port: true #以端口号区分客户端
