@@ -23,6 +23,12 @@
 
 	<dependencies>
 
+        <!-- hush-core依赖 -->
+        <dependency>
+            <groupId>com.lawrence.hush</groupId>
+            <artifactId>hush-core</artifactId>
+        </dependency>
+
 		<!-- spring-cloud系列依赖 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>

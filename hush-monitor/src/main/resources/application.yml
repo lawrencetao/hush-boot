@@ -1,0 +1,25 @@
+eureka:
+  instance:
+    prefer-ip-address: true #\u662F\u5426\u6CE8\u518Cip\u5230eureka
+  client:
+    healthcheck:
+      enabled: true #eureka\u5C06\u5065\u5EB7\u68C0\u67E5\u4EA4\u7ED9actuator
+    service-url:
+      defaultZone: http://${hush-boot.eureka.name}:${hush-boot.eureka.password}@localhost:8761/eureka/
+
+management:
+  context-path: /monitor-manage
+
+endpoints:
+  shutdown:
+    enabled: true #\u5F00\u542Fshutdown\u64CD\u4F5C
+
+security:
+  user:
+    name: lawrence
+    password: lawrence-monitor
+
+hush-boot:
+  eureka:
+    name: lawrence
+    password: lawrence-registry

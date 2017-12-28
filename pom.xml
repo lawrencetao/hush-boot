@@ -20,10 +20,13 @@
         <version>1.5.9.RELEASE</version>
     </parent>
 
-    <!-- 包含模块, 按启动顺序排列 -->
+    <!-- 包含模块, 除core以外, 按顺序启动 -->
     <modules>
+        <module>hush-core</module>
         <module>hush-registry</module>
         <module>hush-config</module>
+        <module>hush-monitor</module>
+        <module>hush-turbine</module>
         <module>hush-admin</module>
         <module>hush-webapp</module>
     </modules>
@@ -33,6 +36,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+
+        <hush-core.version>1.0.0-SNAPSHOT</hush-core.version>
 
         <spring-cloud.version>Edgware.RELEASE</spring-cloud.version>
         <spring-boot.version>1.5.9.RELEASE</spring-boot.version>
@@ -87,6 +92,13 @@
     <!-- 仅声明依赖 -->
     <dependencyManagement>
         <dependencies>
+
+            <!-- hush-core依赖 -->
+            <dependency>
+                <groupId>com.lawrence.hush</groupId>
+                <artifactId>hush-core</artifactId>
+                <version>${hush-core.version}</version>
+            </dependency>
 
             <!-- spring-cloud系列依赖 -->
             <dependency>

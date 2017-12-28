@@ -1,0 +1,18 @@
+eureka:
+  instance:
+    prefer-ip-address: true #是否注册ip到eureka
+  client:
+    healthcheck:
+      enabled: true #eureka将健康检查交给actuator
+    service-url:
+      defaultZone: http://${hush-boot.eureka.name}:${hush-boot.eureka.password}@localhost:8761/eureka/
+
+hush-boot:
+  eureka:
+    name: lawrence
+    password: lawrence-registry
+
+turbine:
+  instanceUrlSuffix: /webapp-manage/hystrix.stream
+  app-config: hush-webapp
+  cluster-name-expression: new String("default")
