@@ -1,13 +1,10 @@
-server:
-  port: 9000 #9000-9003作为一组webapp服务的集群端口
-
 eureka:
   client:
     healthcheck:
       enabled: true #eureka将健康检查交给actuator
 
 management:
-  context-path: /webapp-manage
+  context-path: /hush-management
 
 spring:
   rabbitmq:

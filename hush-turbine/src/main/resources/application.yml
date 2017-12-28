@@ -10,12 +10,16 @@ eureka:
     service-url:
       defaultZone: http://${hush-boot.eureka.name}:${hush-boot.eureka.password}@localhost:8761/eureka/
 
+management:
+  context-path: /hush-management
+
 hush-boot:
   eureka:
     name: lawrence
     password: lawrence-registry
 
 turbine:
-  instanceUrlSuffix: /webapp-manage/hystrix.stream
+  instanceUrlSuffix: /hush-management/hystrix.stream
   app-config: hush-webapp
   cluster-name-expression: new String("default")
+  combine-host-port: true #以端口号区分客户端

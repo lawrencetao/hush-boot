@@ -11,7 +11,11 @@ eureka:
     service-url:
       defaultZone: http://${security.user.name}:${security.user.password}@${eureka.instance.hostname}:${server.port}/eureka/
 
+management:
+  context-path: /hush-management
+
 security:
   user:
     name: lawrence
     password: lawrence-registry
+
