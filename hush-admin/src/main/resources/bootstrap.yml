@@ -11,9 +11,6 @@ spring:
         service-id: hush-config
       label: master #git分支
 
-server:
-  port: 9005 #9005-9008作为一组admin服务的集群端口
-
 eureka:
   instance:
     prefer-ip-address: true #是否注册ip到eureka

@@ -1,6 +1,3 @@
 spring:
   application:
     name: hush-config
-
-server:
-  port: 8861

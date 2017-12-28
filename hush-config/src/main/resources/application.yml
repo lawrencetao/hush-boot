@@ -1,3 +1,6 @@
+server:
+  port: 8861
+
 eureka:
   instance:
     prefer-ip-address: true #是否注册ip到eureka

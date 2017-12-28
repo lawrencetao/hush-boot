@@ -1,6 +1,3 @@
 spring:
   application:
     name: hush-turbine
-
-server:
-  port: 8772
