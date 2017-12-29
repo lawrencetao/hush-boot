@@ -7,6 +7,11 @@ management:
   context-path: /hush-management
 
 spring:
+  zipkin:
+    base-url: http://hush-zipkin
+  sleuth:
+    sampler:
+      percentage: 1.0 #日志收集百分比
   rabbitmq:
     virtual-host: /
     host: localhost
@@ -27,7 +32,7 @@ feign:
       default:
         connectTimeout: 5000
         readTimeout: 5000
-        loggerLevel: headers #默认feign日志级别
+        loggerLevel: basic #默认feign日志级别
 
 ribbon:
   eager-load:

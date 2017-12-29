@@ -7,6 +7,11 @@ management:
   context-path: /hush-management
 
 spring:
+  zipkin:
+    base-url: http://hush-zipkin
+  sleuth:
+    sampler:
+      percentage: 1.0 #日志收集百分比
   rabbitmq:
     virtual-host: /
     host: localhost
