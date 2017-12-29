@@ -13,10 +13,6 @@ eureka:
 management:
   context-path: /hush-management
 
-endpoints:
-  shutdown:
-    enabled: true #开启shutdown操作
-
 security:
   user:
     name: lawrence
@@ -26,3 +22,15 @@ hush-boot:
   eureka:
     name: lawrence
     password: lawrence-registry
+
+turbine:
+  stream:
+    port: 8775
+
+spring:
+  rabbitmq:
+    virtual-host: /
+    host: localhost
+    port: 5672
+    username: lawrence
+    password: lawrence

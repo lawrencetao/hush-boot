@@ -55,6 +55,12 @@
             <artifactId>spring-cloud-starter-ribbon</artifactId>
         </dependency>
 
+        <!-- rabbitmq实现turbine-stream聚合依赖 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-netflix-hystrix-amqp</artifactId>
+        </dependency>
+
 		<!-- spring-boot系列依赖 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
