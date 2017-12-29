@@ -25,7 +25,7 @@ hush-boot:
 
 turbine:
   stream:
-    port: 8775
+    port: 8989
 
 spring:
   rabbitmq:
