@@ -10,6 +10,7 @@ spring:
     active: single
 
 
+
 ---
 spring:
   profiles: single
