@@ -1,0 +1,43 @@
+server:
+  port: 8781
+
+eureka:
+  instance:
+    prefer-ip-address: true #\u662F\u5426\u6CE8\u518Cip\u5230eureka
+  client:
+    healthcheck:
+      enabled: true #eureka\u5C06\u5065\u5EB7\u68C0\u67E5\u4EA4\u7ED9actuator
+    service-url:
+      defaultZone: http://${hush-boot.eureka.name}:${hush-boot.eureka.password}@localhost:8761/eureka/
+
+management:
+  context-path: /hush-management
+
+security:
+  user:
+    name: lawrence
+    password: lawrence-zipkin
+
+hush-boot:
+  eureka:
+    name: lawrence
+    password: lawrence-registry
+
+zipkin:
+  storage:
+    type: mysql #zipkin\u94FE\u8DEF\u8FFD\u8E2A\u4FE1\u606F\u5B58\u50A8\u5230mysql
+
+spring:
+  rabbitmq:
+    virtual-host: /
+    host: localhost
+    port: 5672
+    username: lawrence
+    password: lawrence
+  datasource:
+    schema: classpath:mysql.sql
+    url: jdbc:mysql://172.168.0.21:3306/hush?Unicode=true&characterEncoding=utf8&useSSL=false
+    username: lima_user
+    password: Mysql@1234
+    continue-on-error: true
+
