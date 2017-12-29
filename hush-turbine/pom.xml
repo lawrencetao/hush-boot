@@ -17,7 +17,7 @@
 
 	<name>hush-turbine</name>
 	<url>https://github.com/lawrencetao/hush-boot</url>
-	<description>hush-turbine聚合-消息中间件</description>
+	<description>hush-turbine聚合中心</description>
 
 	<!-- TODO 依赖 ============================================================ -->
 
@@ -29,7 +29,7 @@
 			<artifactId>spring-cloud-starter-eureka-server</artifactId>
 		</dependency>
 
-        <!-- turbine聚合依赖-消息中间件 -->
+        <!-- turbine聚合依赖 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-turbine</artifactId>
