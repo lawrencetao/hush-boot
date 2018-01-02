@@ -1,11 +1,13 @@
 package com.lawrence.hush;
 
+import com.lawrence.hush.filter.NameTraceSampler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
+import org.springframework.cloud.sleuth.sampler.SamplerProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
@@ -33,6 +35,17 @@ public class WebappApplication {
         simpleClientHttpRequestFactory.setReadTimeout(readTimeout);
 
         return new RestTemplate(simpleClientHttpRequestFactory);
+    }
+
+    /**
+     * 配置自定义Sampler
+     *
+     * @return NameTraceSampler
+     */
+    @Bean
+    public NameTraceSampler defaultSampler(SamplerProperties properties) {
+
+        return new NameTraceSampler(properties);
     }
 
 	public static void main(String[] args) {

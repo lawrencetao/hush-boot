@@ -1,4 +1,4 @@
-package com.lawrence.hush.config.sleuth;
+package com.lawrence.hush.filter;
 
 import org.springframework.cloud.sleuth.Sampler;
 import org.springframework.cloud.sleuth.Span;
@@ -23,6 +23,7 @@ public class NameTraceSampler implements Sampler {
         nameStrategy = new HashMap<>();
         nameStrategy.put("send-metrics", "");
         nameStrategy.put("gather-metrics", "");
+        nameStrategy.put("rxjava", "");
     }
 
     public NameTraceSampler(SamplerProperties configuration) {

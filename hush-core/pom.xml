@@ -23,6 +23,12 @@
 
 	<dependencies>
 
+		<!-- spring-cloud系列依赖 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
+		</dependency>
+
         <!-- spring-boot系列依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
