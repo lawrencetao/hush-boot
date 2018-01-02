@@ -80,4 +80,26 @@ public class ClientController {
         return serviceClient.config();
     }
 
+    /**
+     * 无服务消费
+     *
+     * @param type
+     * @return String
+     */
+    @RequestMapping("/none")
+    public String none(String type) {
+
+        System.out.println("none开始, 延迟31秒");
+
+        try {
+            Thread.sleep(31000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("none结束");
+
+        return "无服务调用";
+    }
+
 }
