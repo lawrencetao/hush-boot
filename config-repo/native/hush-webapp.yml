@@ -8,7 +8,7 @@ management:
 
 spring:
   zipkin:
-    base-url: http://hush-zipkin
+    base-url: hush-zipkin
   sleuth:
     sampler:
       percentage: 1.0 #日志收集百分比
