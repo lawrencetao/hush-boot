@@ -25,11 +25,14 @@
         <module>hush-core</module>
         <module>hush-registry</module>
         <module>hush-config</module>
-        <module>hush-zipkin</module>
-        <module>hush-monitor</module>
-        <module>hush-turbine</module>
+        <module>hush-gateway</module>
         <module>hush-admin</module>
         <module>hush-webapp</module>
+
+        <!-- 监控组件 -->
+        <module>hush-zipkin</module>
+        <module>hush-turbine</module>
+        <module>hush-monitor</module>
     </modules>
 
     <!-- 版本管理 -->

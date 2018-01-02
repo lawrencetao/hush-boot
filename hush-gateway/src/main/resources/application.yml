@@ -1,0 +1,45 @@
+eureka:
+  instance:
+    prefer-ip-address: true #\u662F\u5426\u6CE8\u518Cip\u5230eureka
+  client:
+    healthcheck:
+      enabled: true #eureka\u5C06\u5065\u5EB7\u68C0\u67E5\u4EA4\u7ED9actuator
+    service-url:
+      defaultZone: http://${hush-boot.eureka.name}:${hush-boot.eureka.password}@localhost:8761/eureka/
+
+management:
+  context-path: /hush-management
+
+hush-boot:
+  eureka:
+    name: lawrence
+    password: lawrence-registry
+
+zuul:
+  addHostHeader: true #\u8F6C\u53D1\u524D\u8BBE\u7F6Ehost\u8BF7\u6C42\u5934\u4FE1\u606F
+  ignored-services: '*' #\u5FFD\u7565\u9ED8\u8BA4\u8DEF\u7531\u89C4\u5219
+  routes:
+    hush-admin:
+      path: /admin/**
+      sensitiveHeaders: #\u654F\u611Fheaders\u8BBE\u7F6E\u4E3A\u7A7A
+    hush-webapp:
+      path: /webapp/**
+      sensitiveHeaders: #\u654F\u611Fheaders\u8BBE\u7F6E\u4E3A\u7A7A
+  ribbon-isolation-strategy: thread #hystrix\u7EBF\u7A0B\u9694\u79BB\u7B56\u7565
+  thread-pool:
+    use-separate-thread-pools: true #\u6BCF\u4E2A\u8DEF\u7531\u4F7F\u7528\u72EC\u7ACB\u7EBF\u7A0B\u6C60
+
+ribbon:
+  ReadTimeout: 30000
+  ConnectTimeout: 30000
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false #\u5173\u95EDzuul\u7EC4\u4EF6\u4E2D\u4F7F\u7528hystrix\u7684\u8D85\u65F6\u65AD\u8DEF
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000 #hystrix\u8D85\u65F6\u65F6\u95F4, \u65AD\u8DEF
+
