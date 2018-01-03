@@ -27,6 +27,9 @@ zuul:
   ribbon-isolation-strategy: thread #hystrix线程隔离策略
   thread-pool:
     use-separate-thread-pools: true #每个路由使用独立线程池
+  dynamic-filter:
+    root: dynamic-filter/pre #动态filter路径, 多个用逗号分隔
+    interval: 30 #动态刷新filter时间, 单位秒
 
 ribbon:
   ReadTimeout: 30000
@@ -41,4 +44,3 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 60000 #hystrix超时时间, 断路
-
