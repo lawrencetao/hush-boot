@@ -54,6 +54,9 @@
 
         <mysql-connector-java.version>5.1.41</mysql-connector-java.version>
 
+        <groovy.version>2.4.12</groovy.version>
+        <netflix-commons.version>0.3.0</netflix-commons.version>
+
     </properties>
 
     <!-- TODO 依赖 ============================================================ -->
@@ -134,6 +137,18 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql-connector-java.version}</version>
+            </dependency>
+
+            <!-- groovy依赖 -->
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-all</artifactId>
+                <version>${groovy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.netflix.netflix-commons</groupId>
+                <artifactId>netflix-commons-util</artifactId>
+                <version>${netflix-commons.version}</version>
             </dependency>
 
         </dependencies>

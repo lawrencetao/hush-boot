@@ -1,11 +1,11 @@
-package com.lawrence.hush.filter;
+package com.lawrence.hush.filter.pre;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class AccessTokenFilter extends ZuulFilter {
+class AccessTokenFilter extends ZuulFilter {
 
     /**
      * 过滤器类型, pre(路由之前)
@@ -13,7 +13,7 @@ public class AccessTokenFilter extends ZuulFilter {
      * @return String
      */
     @Override
-    public String filterType() {
+    String filterType() {
 
         return "pre";
     }
@@ -24,7 +24,8 @@ public class AccessTokenFilter extends ZuulFilter {
      * @return int
      */
     @Override
-    public int filterOrder() {
+    int filterOrder() {
+
         return 0;
     }
 
@@ -34,7 +35,7 @@ public class AccessTokenFilter extends ZuulFilter {
      * @return boolean
      */
     @Override
-    public boolean shouldFilter() {
+    boolean shouldFilter() {
         RequestContext requestContext = RequestContext.getCurrentContext();
         HttpServletRequest request = requestContext.getRequest();
 
@@ -52,8 +53,9 @@ public class AccessTokenFilter extends ZuulFilter {
      *
      * @return Object
      */
+    @SuppressWarnings("ChangeToOperator")
     @Override
-    public Object run() {
+    Object run() {
         RequestContext requestContext = RequestContext.getCurrentContext();
         HttpServletRequest request = requestContext.getRequest();
 
