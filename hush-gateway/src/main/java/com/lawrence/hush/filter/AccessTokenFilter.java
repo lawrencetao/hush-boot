@@ -4,10 +4,8 @@ import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-public class AccessFilter extends ZuulFilter {
+public class AccessTokenFilter extends ZuulFilter {
 
     /**
      * 过滤器类型, pre(路由之前)
@@ -63,10 +61,12 @@ public class AccessFilter extends ZuulFilter {
         String accessToken = request.getParameter("accessToken");
 
         if (!"lawrence".equals(accessToken)) {
-            requestContext.setSendZuulResponse(false);
-            requestContext.setResponseStatusCode(401);
+
+            // 返回异常格式统一, 业务代码#业务描述
+            throw new RuntimeException("401#权限异常, accessToken错误");
         }
 
         return null;
     }
+
 }
