@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * fastjson配置类
+ * fastjson配置
  */
 @Configuration
 @ConditionalOnClass(value = {com.alibaba.fastjson.JSON.class, com.alibaba.fastjson.JSONObject.class})

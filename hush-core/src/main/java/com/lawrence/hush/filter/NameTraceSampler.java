@@ -11,7 +11,7 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * sleuth收集策略类
+ * sleuth收集策略
  */
 public class NameTraceSampler implements Sampler {
     private final AtomicInteger counter = new AtomicInteger(0);

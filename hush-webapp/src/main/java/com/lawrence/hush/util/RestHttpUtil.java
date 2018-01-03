@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * restful请求工具类
+ * restful请求工具
  */
 @Component
 public class RestHttpUtil {

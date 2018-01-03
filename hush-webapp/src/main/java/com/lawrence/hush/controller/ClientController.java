@@ -58,7 +58,7 @@ public class ClientController {
         ResponseEntity<String> responseEntity;
         try {
             responseEntity = restHttpUtil.restPost("http://hush-admin/test/service?type={type}",
-                    uriVeriables, headers, json, "application/json; charset=utf-8");
+                    uriVeriables, headers, json, "application/json; charset=UTF-8");
 
             return responseEntity.getBody();
         } catch (Exception e) {
