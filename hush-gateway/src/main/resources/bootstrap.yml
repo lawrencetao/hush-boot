@@ -1,6 +1,30 @@
+server:
+  port: 5555
+
 spring:
   application:
     name: hush-gateway
+  cloud:
+    config:
+      username: ${hush-boot.config.name}
+      password: ${hush-boot.config.password}
+      fail-fast: true #快速响应获取配置是否正常
+      discovery:
+        enabled: true
+        service-id: hush-config
+      label: master #git分支
 
-server:
-  port: 5555
+eureka:
+  instance:
+    prefer-ip-address: true #是否注册ip到eureka
+  client:
+    service-url:
+      defaultZone: http://${hush-boot.eureka.name}:${hush-boot.eureka.password}@localhost:8761/eureka/
+
+hush-boot:
+  config:
+    name: lawrence
+    password: lawrence-config
+  eureka:
+    name: lawrence
+    password: lawrence-registry

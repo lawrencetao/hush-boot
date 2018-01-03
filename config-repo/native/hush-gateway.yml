@@ -1,0 +1,44 @@
+eureka:
+  client:
+    healthcheck:
+      enabled: true #eureka将健康检查交给actuator
+
+management:
+  context-path: /hush-management
+
+spring:
+  rabbitmq:
+    virtual-host: /
+    host: localhost
+    port: 5672
+    username: lawrence
+    password: lawrence
+
+zuul:
+  addHostHeader: true #转发前设置host请求头信息
+  ignored-services: '*' #忽略默认路由规则
+  routes:
+    hush-admin:
+      path: /admin/**
+      sensitiveHeaders: #敏感headers设置为空
+    hush-webapp:
+      path: /webapp/**
+      sensitiveHeaders: #敏感headers设置为空
+  ribbon-isolation-strategy: thread #hystrix线程隔离策略
+  thread-pool:
+    use-separate-thread-pools: true #每个路由使用独立线程池
+
+ribbon:
+  ReadTimeout: 30000
+  ConnectTimeout: 30000
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false #关闭zuul组件中使用hystrix的超时断路
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000 #hystrix超时时间, 断路
+
