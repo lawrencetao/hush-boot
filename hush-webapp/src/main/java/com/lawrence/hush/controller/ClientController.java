@@ -6,6 +6,7 @@ import com.lawrence.hush.util.RestHttpUtil;
 import com.lawrence.hush.util.StringUtil;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -28,7 +29,7 @@ public class ClientController {
      * @param type
      * @return String
      */
-    @RequestMapping("/feignClient")
+    @RequestMapping(value = "/feignClient", method = RequestMethod.GET)
     public String client(String type) {
         JSONObject json = new JSONObject();
         json.put("test", "json");
@@ -43,7 +44,7 @@ public class ClientController {
      * @param type
      * @return String
      */
-    @RequestMapping("/restClient")
+    @RequestMapping(value = "/restClient", method = RequestMethod.GET)
     public String rest(String type) {
         JSONObject json = new JSONObject();
         json.put("test", "json");
@@ -74,7 +75,7 @@ public class ClientController {
      * @param type
      * @return String
      */
-    @RequestMapping("/config")
+    @RequestMapping(value = "/config", method = RequestMethod.GET)
     public String config(String type) {
 
         return serviceClient.config();
@@ -86,7 +87,7 @@ public class ClientController {
      * @param type
      * @return String
      */
-    @RequestMapping("/none")
+    @RequestMapping(value = "/none", method = RequestMethod.GET)
     public String none(String type) {
 
         System.out.println("none开始, 延迟31秒");
