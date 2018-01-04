@@ -1,15 +1,43 @@
 package com.lawrence.hush;
 
+import com.lawrence.hush.config.AdminConfig;
 import com.lawrence.hush.filter.NameTraceSampler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.sleuth.sampler.SamplerProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import javax.annotation.Resource;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-public class AdminApplication {
+public class AdminApplication extends WebMvcConfigurerAdapter {
+
+    @Resource
+    private AdminConfig adminConfig;
+
+	/**
+	 * 添加资源处理handler
+	 *
+	 * @param registry
+	 */
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
+		// 设置static和templates目录的静态访问
+		registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+		registry.addResourceHandler("/templates/**").addResourceLocations("classpath:/templates/");
+
+		// 添加swagger2目录的静态访问
+		if (adminConfig.getSwagger2Open()) {
+			registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+			registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+		}
+
+	}
 
 	/**
 	 * 配置自定义Sampler

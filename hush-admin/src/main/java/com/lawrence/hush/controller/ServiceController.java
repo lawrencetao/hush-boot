@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.lawrence.hush.redis.RedisOperator;
 import com.lawrence.hush.test.TestObj;
 import com.lawrence.hush.util.LogUtil;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
@@ -13,6 +14,7 @@ import org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +38,7 @@ public class ServiceController {
      * @param request, json
      * @return String
      */
-    @RequestMapping("/service")
+    @RequestMapping(value = "/service", method = RequestMethod.POST)
     public String service(HttpServletRequest request, @RequestBody JSONObject json) {
         String type = request.getParameter("type");
 
@@ -74,7 +76,14 @@ public class ServiceController {
     /**
      * 获取可动态刷新的配置
      */
-    @RequestMapping("/config")
+    @ApiOperation(value = "测试动态刷新参数", notes = "测试动态刷新参数")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", name = "accessToken", dataType = "String", required = true, value = "准入令牌", defaultValue = "lawrence")
+    })
+    @ApiResponses({
+            @ApiResponse(code = 404, message = "/test/config请求地址错误")
+    })
+    @RequestMapping(value = "/config", method = RequestMethod.GET)
     public JSONObject config(HttpServletRequest request) {
         TestObj to = new TestObj();
         to.setId("test");

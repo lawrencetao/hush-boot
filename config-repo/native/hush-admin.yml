@@ -24,5 +24,6 @@ spring:
     password: lawrence
 
 hush-admin:
+  swagger2-open: true #是否开启swagger2
   dynamic:
     param: lawrence
