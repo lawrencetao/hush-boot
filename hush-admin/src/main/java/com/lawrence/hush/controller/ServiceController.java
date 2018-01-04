@@ -1,6 +1,8 @@
 package com.lawrence.hush.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.lawrence.hush.redis.RedisOperator;
+import com.lawrence.hush.test.TestObj;
 import com.lawrence.hush.util.LogUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,7 +28,7 @@ public class ServiceController {
     @Autowired
     private EurekaDiscoveryClient client;
     @Autowired
-    private RedisTemplate<String, String> redisTemplate;
+    private RedisOperator redisOperator;
 
     /**
      * 验证feign和ribbon-restTemplate服务提供方法
@@ -60,8 +62,6 @@ public class ServiceController {
                 "Cookie: " + request.getHeader("Cookie") + "\n" +
                 "RequestBody: " + json);
 
-        redisTemplate.opsForValue().set("test", "test");
-
         ServiceInstance instance = client.getLocalServiceInstance();
         LogUtil.info(getClass(), instance.getHost() + ":" + instance.getPort() + " | " + instance.getServiceId());
 
@@ -76,12 +76,19 @@ public class ServiceController {
      */
     @RequestMapping("/config")
     public JSONObject config(HttpServletRequest request) {
-
-        LogUtil.info(getClass(), "配置param: " + param);
+        TestObj to = new TestObj();
+        to.setId("test");
+        to.setFee(100);
+        redisOperator.setObject("test", to);
+        to.setNum(10);
+        to = redisOperator.getObject("test");
 
         JSONObject json = new JSONObject();
         json.put("param", param);
         json.put("word", "中文");
+        json.put("testObj", to);
+
+        LogUtil.info(getClass(), "返回json: " + json.toString());
 
         return json;
     }
