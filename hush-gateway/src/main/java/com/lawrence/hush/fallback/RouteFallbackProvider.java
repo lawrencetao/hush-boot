@@ -1,5 +1,6 @@
 package com.lawrence.hush.fallback;
 
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.cloud.netflix.zuul.filters.route.FallbackProvider;
@@ -63,9 +64,11 @@ public class RouteFallbackProvider implements FallbackProvider {
                     e.printStackTrace();
                 }
 
-                String message = "网关异常, 请稍后再试";
+                JSONObject resJson = new JSONObject();
+                resJson.put("code", "500");
+                resJson.put("message", "网关异常, 请稍后再试");
 
-                return new ByteArrayInputStream(message.getBytes("UTF-8"));
+                return new ByteArrayInputStream(resJson.toString().getBytes("UTF-8"));
             }
 
             /* 打印throwable信息 */
@@ -107,11 +110,53 @@ public class RouteFallbackProvider implements FallbackProvider {
     /**
      * 降级处理response
      *
-     * @return
+     * @return ClientHttpResponse
      */
     @Override
     public ClientHttpResponse fallbackResponse() {
 
-        return null;
+        return new ClientHttpResponse() {
+
+            @Override
+            public HttpStatus getStatusCode() throws IOException {
+
+                return HttpStatus.OK;
+            }
+
+            @Override
+            public int getRawStatusCode() throws IOException {
+
+                return 200;
+            }
+
+            @Override
+            public String getStatusText() throws IOException {
+
+                return "OK";
+            }
+
+            @Override
+            public void close() {
+
+            }
+
+            @Override
+            public InputStream getBody() throws IOException {
+                JSONObject resJson = new JSONObject();
+                resJson.put("code", "500");
+                resJson.put("message", "网关异常, 请稍后再试");
+
+                return new ByteArrayInputStream(resJson.toString().getBytes("UTF-8"));
+            }
+
+            @Override
+            public HttpHeaders getHeaders() {
+
+                HttpHeaders headers = new HttpHeaders();
+                headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+
+                return headers;
+            }
+        };
     }
 }
