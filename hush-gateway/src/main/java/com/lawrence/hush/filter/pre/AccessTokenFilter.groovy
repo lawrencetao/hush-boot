@@ -1,10 +1,16 @@
 package com.lawrence.hush.filter.pre;
 
+import com.alibaba.fastjson.JSONObject;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
+import org.apache.http.HttpStatus;
+import org.springframework.http.MediaType;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * groovy脚本拦截器
+ */
 class AccessTokenFilter extends ZuulFilter {
 
     /**
@@ -39,7 +45,7 @@ class AccessTokenFilter extends ZuulFilter {
         RequestContext requestContext = RequestContext.getCurrentContext();
         HttpServletRequest request = requestContext.getRequest();
 
-        // 若uri包含feignClient则进行过滤
+        // 若uri包含/config则进行过滤
         if (request.getRequestURI().contains("/config")) {
 
             return true;
@@ -63,9 +69,15 @@ class AccessTokenFilter extends ZuulFilter {
         String accessToken = request.getParameter("accessToken");
 
         if (!"lawrence".equals(accessToken)) {
+            JSONObject resJson = new JSONObject();
+            resJson.put("code", "401");
+            resJson.put("message", "权限异常, 请进行认证");
 
-            // 返回异常格式统一, 业务代码#业务描述
-            throw new RuntimeException("401#权限异常, accessToken错误");
+            // 过滤当前请求, 并返回设定的response
+            requestContext.setSendZuulResponse(false);
+            requestContext.setResponseStatusCode(HttpStatus.SC_UNAUTHORIZED);
+            requestContext.getResponse().setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
+            requestContext.setResponseBody(resJson.toString());
         }
 
         return null;
