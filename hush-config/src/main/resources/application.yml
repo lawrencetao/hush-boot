@@ -10,32 +10,33 @@ eureka:
     service-url:
       defaultZone: http://${hush-boot.eureka.name}:${hush-boot.eureka.password}@localhost:8761/eureka/
 
-management:
+management: #管理配置
   context-path: /hush-management
 
 endpoints:
   bus:
-    enabled: true #开启bus操作
+    enabled: true #开启bus总线操作
   shutdown:
     enabled: true #开启shutdown操作
 
-security:
+security: #basic认证, 用户名/密码
   user:
     name: lawrence
     password: lawrence-config
 
-hush-boot:
+hush-boot: #注册到eureka的basic认证, 用户名/密码
   eureka:
     name: lawrence
     password: lawrence-registry
 
 spring:
   profiles:
-    active: native
+    active: native #使用本地配置
 
 
 
 ---
+#本地配置profile
 spring:
   profiles: native
   rabbitmq:
@@ -53,6 +54,7 @@ spring:
 
 
 ---
+#远程git配置profile
 spring:
   profiles: git
   cloud:
