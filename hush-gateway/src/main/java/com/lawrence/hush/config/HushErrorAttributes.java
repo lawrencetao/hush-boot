@@ -1,11 +1,13 @@
 package com.lawrence.hush.config;
 
-import com.netflix.zuul.exception.ZuulException;
 import org.springframework.boot.autoconfigure.web.DefaultErrorAttributes;
 import org.springframework.web.context.request.RequestAttributes;
 
 import java.util.Map;
 
+/**
+ * 错误处理配置
+ */
 public class HushErrorAttributes extends DefaultErrorAttributes {
 
     @Override
