@@ -59,7 +59,6 @@
 			<artifactId>spring-cloud-stream-binder-rabbit</artifactId>
 		</dependency>
 
-
 		<!-- spring-boot-web依赖 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
