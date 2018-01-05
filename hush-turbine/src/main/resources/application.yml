@@ -13,6 +13,11 @@ eureka:
 management: #管理配置
   context-path: /hush-management
 
+security: #basic认证, 用户名/密码
+  user:
+    name: lawrence
+    password: lawrence-turbine
+
 hush-boot: #注册到eureka的basic认证, 用户名/密码
   eureka:
     name: lawrence

@@ -41,6 +41,12 @@
             <artifactId>spring-cloud-starter-netflix-turbine</artifactId>
 		</dependency>
 
+        <!-- spring-boot-security依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
 	</dependencies>
 
 </project>
