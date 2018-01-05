@@ -41,6 +41,11 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
     	local.remove();
     }
 
+    /**
+     * 通过key选择数据源
+     *
+     * @return Object
+     */
     @Override
     protected Object determineCurrentLookupKey() {
         String key = DynamicDataSource.getJdbcType();

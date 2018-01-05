@@ -12,6 +12,9 @@ import org.springframework.context.annotation.Configuration;
 
 import java.sql.SQLException;
 
+/**
+ * druid配置
+ */
 @Configuration
 public class DruidConfig {
 
@@ -60,7 +63,7 @@ public class DruidConfig {
     }
 
     /**
-     * Druid监控登陆配置
+     * druid监控登陆配置
      *
      * @return ServletRegistrationBean
      */

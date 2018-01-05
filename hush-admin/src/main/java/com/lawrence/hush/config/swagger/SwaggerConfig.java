@@ -13,7 +13,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * swagger配置类
+ * swagger配置
  */
 @Configuration
 @ConditionalOnExpression("${hush-admin.switch.swagger2-open}")

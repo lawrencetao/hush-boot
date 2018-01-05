@@ -79,7 +79,6 @@
 
   <select id="query" parameterType="java.lang.String" resultMap="BaseResultMap">
     select * from zipkin_spans where name = #{name, jdbcType=VARCHAR}
-
   </select>
 
 </mapper>

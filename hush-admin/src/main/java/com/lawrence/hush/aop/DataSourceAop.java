@@ -17,7 +17,7 @@ import org.springframework.core.PriorityOrdered;
 import java.lang.reflect.Method;
 
 /**
- * 切换数据源aop类
+ * aop切换数据源
  */
 @Aspect
 @EnableAspectJAutoProxy(exposeProxy = true, proxyTargetClass = true)
@@ -58,7 +58,7 @@ public class DataSourceAop implements PriorityOrdered {
     }
 
     /**
-     * 无读写注解的service方法, 默认single数据源
+     * 无注解的service方法, 默认single数据源
      */
     @Pointcut(value = "execution(* com.lawrence.hush.service.impl..*.*(..)) && " +
             "(!@annotation(com.lawrence.hush.annotation.ServiceDataSource))")

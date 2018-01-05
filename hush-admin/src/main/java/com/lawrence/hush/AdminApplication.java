@@ -13,6 +13,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 import javax.annotation.Resource;
 
+/**
+ * admin服务, 注册到eureka提供服务, 调用config服务
+ */
 @EnableTransactionManagement
 @EnableDiscoveryClient
 @SpringBootApplication

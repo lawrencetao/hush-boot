@@ -5,6 +5,9 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * multi数据源配置
+ */
 @Data
 @Configuration
 @ConfigurationProperties(prefix = "hush-admin.datasource.multi")

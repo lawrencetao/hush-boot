@@ -1,5 +1,8 @@
 package com.lawrence.hush.config.druid;
 
+/**
+ * 数据源配置接口
+ */
 public interface DruidProperties {
 
     String getUrl();

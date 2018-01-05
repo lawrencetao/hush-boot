@@ -6,11 +6,11 @@ spring:
     name: hush-admin
   cloud:
     config:
-      username: ${hush-boot.config.name}
-      password: ${hush-boot.config.password}
+      username: ${hush-boot.config.name} #调用config用户名
+      password: ${hush-boot.config.password} #调用config密码
       fail-fast: true #快速响应获取配置是否正常
       discovery:
-        enabled: true
+        enabled: true #开启发现服务
         service-id: hush-config
       label: master #git分支
 
@@ -21,10 +21,10 @@ eureka:
     service-url:
       defaultZone: http://${hush-boot.eureka.name}:${hush-boot.eureka.password}@localhost:8761/eureka/
 
-hush-boot:
-  config:
-    name: lawrence
-    password: lawrence-config
+hush-boot: #注册到eureka和调用config的basic认证, 用户名/密码
   eureka:
     name: lawrence
     password: lawrence-registry
+  config:
+    name: lawrence
+    password: lawrence-config

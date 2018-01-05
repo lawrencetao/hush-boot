@@ -20,6 +20,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * 业务controller
+ */
 @RefreshScope
 @RestController
 @RequestMapping("/busi")

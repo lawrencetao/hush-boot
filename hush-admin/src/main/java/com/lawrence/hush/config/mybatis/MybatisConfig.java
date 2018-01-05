@@ -20,8 +20,11 @@ import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * mybatis配置
+ */
 @Configuration
-@EnableTransactionManagement(order = 2)// 让spring事务在数据源切换aop之后加载
+@EnableTransactionManagement(order = 2)// spring事务在数据源切换aop之后加载
 @MapperScan(basePackages = "com.lawrence.hush.dao")
 public class MybatisConfig {
 
@@ -85,7 +88,7 @@ public class MybatisConfig {
     }
 
     /**
-     * 事务管理
+     * 事务管理配置
      *
      * @return DataSourceTransactionManager
      */

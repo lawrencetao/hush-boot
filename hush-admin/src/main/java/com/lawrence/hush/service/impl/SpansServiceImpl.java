@@ -2,10 +2,8 @@ package com.lawrence.hush.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.lawrence.hush.annotation.ServiceDataSource;
 import com.lawrence.hush.config.druid.datasource.MultiProperties;
-import com.lawrence.hush.config.druid.datasource.SingleProperties;
 import com.lawrence.hush.dao.SpansDao;
 import com.lawrence.hush.model.Spans;
 import com.lawrence.hush.service.SpansService;

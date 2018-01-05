@@ -1,7 +1,5 @@
 package com.lawrence.hush.config.druid.datasource;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
-
 /**
  * 数据源类型枚举
  */
