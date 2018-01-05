@@ -14,6 +14,9 @@ import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 
+/**
+ * zuul网关, 注册到eureka提供服务, 调用config服务
+ */
 @EnableZuulProxy
 @EnableConfigurationProperties(DynamicFilterConfig.class)
 @SpringCloudApplication
