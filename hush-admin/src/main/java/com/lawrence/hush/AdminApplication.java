@@ -45,7 +45,7 @@ public class AdminApplication extends WebMvcConfigurerAdapter {
     }
 
     /**
-     * 配置自定义Sampler
+     * 自定义sampler配置
      *
      * @return NameTraceSampler
      */
