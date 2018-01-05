@@ -1,6 +1,8 @@
 # 微服务架构 hush-boot
 * spring cloud架构hush-boot
 
+
+
 # 包含服务
 * hush-registry —— 注册中心，通过闭环注册实现高可用eureka注册中心集群。
     *.主要组件：spring cloud eureka，spring security
@@ -29,6 +31,12 @@
 * hush-core —— 核心依赖，整合了admin，webapp的公用依赖规范，处理类。
     主要组件：spring cloud sleuth
     
+* config-repo —— 本地配置文件，spring cloud config统一管理。
+
+* dynamic-filter —— gateway网关拦截器，动态加载和更新。
+
+
+
 # 技术栈
 * spring cloud微服务框架，spring boot框架，spring mvc框架，mybatis持久层框架，druid数据源，redis缓存，
   spring session共享，spring security安全认证，groovy脚本，swagger2文档生成，fastjson，nio读取文件，logback日志，
