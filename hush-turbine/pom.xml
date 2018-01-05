@@ -23,17 +23,19 @@
 
 	<dependencies>
 
-		<!-- spring-cloud系列依赖 -->
+		<!-- spring-cloud-eureka客户端依赖 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
+
+		<!-- spring-cloud-hystrix-dashboard仪表盘依赖 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
 		</dependency>
 
-        <!-- turbine聚合依赖 -->
+        <!-- spring-cloud-turbine聚合依赖 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-turbine</artifactId>
