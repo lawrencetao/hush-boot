@@ -10,22 +10,22 @@ eureka:
     service-url:
       defaultZone: http://${hush-boot.eureka.name}:${hush-boot.eureka.password}@localhost:8761/eureka/
 
-management:
+management: #管理配置
   context-path: /hush-management
 
-security:
+security: #basic认证, 用户名/密码
   user:
     name: lawrence
     password: lawrence-monitor
 
-hush-boot:
+hush-boot: #注册到eureka的basic认证, 用户名/密码
   eureka:
     name: lawrence
     password: lawrence-registry
 
 turbine:
   stream:
-    port: 8989
+    port: 8989 #turbine-stream聚合端口
 
 spring:
   rabbitmq:
