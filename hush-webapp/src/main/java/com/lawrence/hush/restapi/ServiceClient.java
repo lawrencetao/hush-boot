@@ -1,8 +1,8 @@
 package com.lawrence.hush.restapi;
 
 import com.alibaba.fastjson.JSONObject;
+import com.lawrence.hush.util.LogUtil;
 import feign.hystrix.FallbackFactory;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.stereotype.Component;
@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 
+/**
+ * feign声明式调用接口
+ */
 @FeignClient(name = "hush-admin", fallbackFactory = ServiceClientFallbackFactory.class)
 public interface ServiceClient {
 
@@ -22,9 +25,8 @@ public interface ServiceClient {
 }
 
 /**
- * ServiceClient服务接口的降级处理实现
+ * ServiceClient服务接口降级处理实现
  */
-@Slf4j
 @Component
 class ServiceClientFallbackFactory implements FallbackFactory<ServiceClient> {
 
@@ -64,7 +66,7 @@ class ServiceClientFallbackFactory implements FallbackFactory<ServiceClient> {
                     cause = cause.getCause();
                 }
 
-                log.info("降级异常: " + cause.getMessage() +
+                LogUtil.info(getClass(), "降级异常: " + cause.getMessage() +
                         "\n" + Arrays.toString(cause.getStackTrace()).replace(",", "\n"));
 
             }

@@ -14,6 +14,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * 服务调用controller
+ */
 @RestController
 @RequestMapping("/test")
 public class ClientController {

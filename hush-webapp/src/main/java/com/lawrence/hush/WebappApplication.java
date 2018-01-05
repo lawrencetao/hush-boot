@@ -10,16 +10,19 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * webapp服务, 注册到eureka提供服务, 调用config服务和admin服务
+ */
 @EnableFeignClients
 @SpringCloudApplication
 public class WebappApplication {
 
-    /** ribbon-restTemplate超时设置 */
+    /** ribbon-restTemplate超时时间 */
     private static int connectTimeout = 5000;
     private static int readTimeout = 5000;
 
     /**
-     * 设置转换器和RestTemplate
+     * restTemplate配置
      *
      * @return RestTemplate
      */
@@ -34,7 +37,7 @@ public class WebappApplication {
     }
 
     /**
-     * 配置自定义Sampler
+     * 自定义sampler配置
      *
      * @return NameTraceSampler
      */
