@@ -10,15 +10,15 @@ eureka:
     service-url:
       defaultZone: http://${hush-boot.eureka.name}:${hush-boot.eureka.password}@localhost:8761/eureka/
 
-management:
+management: #\u7BA1\u7406\u914D\u7F6E
   context-path: /hush-management
 
-security:
+security: #basic\u8BA4\u8BC1, \u7528\u6237\u540D/\u5BC6\u7801
   user:
     name: lawrence
     password: lawrence-zipkin
 
-hush-boot:
+hush-boot: #\u6CE8\u518C\u5230eureka\u7684basic\u8BA4\u8BC1, \u7528\u6237\u540D/\u5BC6\u7801
   eureka:
     name: lawrence
     password: lawrence-registry
@@ -35,7 +35,7 @@ spring:
     username: lawrence
     password: lawrence
   datasource:
-    schema: classpath:mysql.sql
+    schema: classpath:mysql.sql #zipkin-mysql\u811A\u672C
     url: jdbc:mysql://172.168.0.21:3306/hush?Unicode=true&characterEncoding=utf8&useSSL=false
     username: lima_user
     password: Mysql@1234

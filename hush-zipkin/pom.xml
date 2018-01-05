@@ -23,13 +23,13 @@
 
 	<dependencies>
 
-		<!-- spring-cloud系列依赖 -->
+		<!-- spring-cloud-eureka客户端依赖 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 
-		<!-- sleuth-zipkin-stream依赖 -->
+		<!-- spring-cloud-sleuth-zipkin-stream服务端依赖 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-sleuth</artifactId>
@@ -47,11 +47,13 @@
             <artifactId>zipkin-autoconfigure-ui</artifactId>
         </dependency>
 
-        <!-- spring-boot系列依赖 -->
+        <!-- spring-boot-security依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
+
+        <!-- spring-boot-jdbc依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
