@@ -12,6 +12,7 @@ spring:
 
 
 ---
+#单实例eureka服务profile
 spring:
   profiles: single
 
@@ -31,6 +32,7 @@ eureka:
 
 
 ---
+#集群eureka服务profile cluster8761
 spring:
   profiles: cluster8761
 
@@ -51,6 +53,7 @@ eureka:
 
 
 ---
+#集群eureka服务profile cluster8762
 spring:
   profiles: cluster8762
 
