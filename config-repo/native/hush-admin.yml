@@ -3,7 +3,7 @@ eureka:
     healthcheck:
       enabled: true #eureka将健康检查交给actuator
 
-management:
+management: #管理配置
   context-path: /hush-management
 
 spring:

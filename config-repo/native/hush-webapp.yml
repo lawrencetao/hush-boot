@@ -3,7 +3,7 @@ eureka:
     healthcheck:
       enabled: true #eureka将健康检查交给actuator
 
-management:
+management: #管理配置
   context-path: /hush-management
 
 spring:
@@ -30,12 +30,12 @@ feign:
   client:
     config:
       default:
-        connectTimeout: 5000
-        readTimeout: 5000
+        connectTimeout: 5000 #feign连接超时时间
+        readTimeout: 5000 #feign处理超时时间
         loggerLevel: basic #默认feign日志级别
 
 ribbon:
-  eager-load:
+  eager-load: #初始加载serverList
     enabled: true
     clients: hush-admin
   MaxAutoRetries: 1 #相同服务实例重试次数, 不含首次

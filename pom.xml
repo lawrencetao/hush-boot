@@ -70,11 +70,13 @@
     <!-- 子项目继承依赖 -->
     <dependencies>
 
-        <!-- spring-boot系列依赖 -->
+        <!-- spring-boot-actuator依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+
+        <!-- spring-boot-test依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -178,7 +180,7 @@
                 <version>${netflix-commons.version}</version>
             </dependency>
 
-            <!-- swagger依赖 -->
+            <!-- swagger2依赖 -->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>

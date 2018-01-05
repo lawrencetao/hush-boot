@@ -9,7 +9,7 @@ import org.springframework.http.MediaType;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * groovy脚本拦截器
+ * groovy脚本过滤器
  */
 class AccessTokenFilter extends ZuulFilter {
 

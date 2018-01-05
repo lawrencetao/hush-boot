@@ -3,7 +3,7 @@ eureka:
     healthcheck:
       enabled: true #eureka将健康检查交给actuator
 
-management:
+management: #管理配置
   context-path: /hush-management
 
 spring:
@@ -32,8 +32,8 @@ zuul:
     interval: 30 #动态刷新filter时间, 单位秒
 
 ribbon:
-  ReadTimeout: 30000
-  ConnectTimeout: 30000
+  ReadTimeout: 30000 #网关处理超时时间
+  ConnectTimeout: 30000 #网关连接超时时间
 
 hystrix:
   command:
