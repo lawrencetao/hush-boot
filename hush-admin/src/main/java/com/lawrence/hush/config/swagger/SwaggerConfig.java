@@ -16,7 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * swagger配置类
  */
 @Configuration
-@ConditionalOnExpression("${hush-admin.swagger2-open}")
+@ConditionalOnExpression("${hush-admin.switch.swagger2-open}")
 @EnableSwagger2
 public class SwaggerConfig {
 

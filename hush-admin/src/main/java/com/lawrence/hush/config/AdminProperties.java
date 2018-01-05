@@ -4,11 +4,13 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
 @Data
-public class AdminConfig {
+@Configuration
+public class AdminProperties {
 
-    @Value("${hush-admin.swagger2-open}")
+    @Value("${hush-admin.switch.swagger2-open}")
     private Boolean swagger2Open;
+    @Value("${hush-admin.switch.multi-datasource-open}")
+    private Boolean multiDatasourceOpen;
 
 }

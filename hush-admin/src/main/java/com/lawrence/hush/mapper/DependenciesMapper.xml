@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lawrence.hush.dao.DependenciesDao">
+  <resultMap id="BaseResultMap" type="com.lawrence.hush.model.Dependencies">
+    <result column="day" jdbcType="DATE" property="day" />
+    <result column="parent" jdbcType="VARCHAR" property="parent" />
+    <result column="child" jdbcType="VARCHAR" property="child" />
+    <result column="call_count" jdbcType="BIGINT" property="callCount" />
+    <result column="error_count" jdbcType="BIGINT" property="errorCount" />
+  </resultMap>
+  <insert id="insert" parameterType="com.lawrence.hush.model.Dependencies">
+    insert into zipkin_dependencies (day, parent, child, 
+      call_count, error_count)
+    values (#{day,jdbcType=DATE}, #{parent,jdbcType=VARCHAR}, #{child,jdbcType=VARCHAR}, 
+      #{callCount,jdbcType=BIGINT}, #{errorCount,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lawrence.hush.model.Dependencies">
+    insert into zipkin_dependencies
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="day != null">
+        day,
+      </if>
+      <if test="parent != null">
+        parent,
+      </if>
+      <if test="child != null">
+        child,
+      </if>
+      <if test="callCount != null">
+        call_count,
+      </if>
+      <if test="errorCount != null">
+        error_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="day != null">
+        #{day,jdbcType=DATE},
+      </if>
+      <if test="parent != null">
+        #{parent,jdbcType=VARCHAR},
+      </if>
+      <if test="child != null">
+        #{child,jdbcType=VARCHAR},
+      </if>
+      <if test="callCount != null">
+        #{callCount,jdbcType=BIGINT},
+      </if>
+      <if test="errorCount != null">
+        #{errorCount,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>
