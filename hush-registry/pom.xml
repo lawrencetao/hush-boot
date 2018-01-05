@@ -23,13 +23,13 @@
 
 	<dependencies>
 
-		<!-- spring-cloud系列依赖 -->
+		<!-- spring-cloud-eureka服务端依赖 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
 		</dependency>
 
-        <!-- spring-boot系列依赖 -->
+        <!-- spring-boot-security依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>

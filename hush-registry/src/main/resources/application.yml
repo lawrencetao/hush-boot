@@ -1,7 +1,7 @@
-management:
+management: #管理配置
   context-path: /hush-management
 
-security:
+security: #basic认证, 用户名/密码
   user:
     name: lawrence
     password: lawrence-registry
