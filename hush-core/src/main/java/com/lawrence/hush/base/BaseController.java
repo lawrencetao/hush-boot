@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collection;
 
 public class BaseController {
 
@@ -18,7 +19,7 @@ public class BaseController {
      * @param code, message, data
      * @return JSONObject
      */
-    public JSONObject pubResponseJson(String code, String message, Object data) {
+    protected JSONObject pubResponseJson(String code, String message, Object data) {
         if (StringUtil.isNull(code)) {
             throw new RuntimeException("返回状态码不能为空");
         }
@@ -29,9 +30,13 @@ public class BaseController {
         json.put("message", message == null ? "" : message);
 
         // 格式化json, null值不输出
-        data = JSON.toJSONString(data, SerializerFeature.PrettyFormat);
+        String temp = JSON.toJSONString(data, SerializerFeature.PrettyFormat);
 
-        json.put("data", data == null ? "" : JSON.parseObject((String) data));
+        if (data instanceof Collection) {
+            json.put("data", StringUtil.isNull(temp) ? "" : JSON.parseArray(temp));
+        } else {
+            json.put("data", StringUtil.isNull(temp) ? "" : JSON.parseObject(temp));
+        }
 
         return json;
     }
@@ -41,7 +46,7 @@ public class BaseController {
      *
      * @param response, str, contentType(默认application/json;charset=UTF-8)
      */
-    public void responseWrite(HttpServletResponse response, String str, String contentType) {
+    protected void responseWrite(HttpServletResponse response, String str, String contentType) {
         if (StringUtil.isNull(contentType)) {
             contentType = MediaType.APPLICATION_JSON_UTF8_VALUE;
         }
@@ -54,6 +59,7 @@ public class BaseController {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
+            assert writer != null;
             writer.flush();
             writer.close();
         }
