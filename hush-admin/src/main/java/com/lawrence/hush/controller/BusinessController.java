@@ -13,9 +13,11 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -128,6 +130,30 @@ public class BusinessController extends BaseController {
         }
 
         return pubResponseJson("200", "操作成功", spansList);
+    }
+
+    /**
+     * 验证session共享
+     *
+     * @param request
+     * @return JSONObject
+     */
+    @RequestMapping(value = "/session")
+    @ApiIgnore
+    public JSONObject session(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+
+        String uid = (String) session.getAttribute("uid");
+        if (StringUtil.isNull(uid)) {
+            uid = StringUtil.getUUIDStr();
+        }
+
+        session.setAttribute("uid", uid);
+
+        JSONObject json = new JSONObject();
+        json.put("uid", uid);
+
+        return json;
     }
 
 }
