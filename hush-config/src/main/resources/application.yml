@@ -31,7 +31,7 @@ hush-boot: #注册到eureka的basic认证, 用户名/密码
 
 spring:
   profiles:
-    active: native #使用本地配置
+    active: native #当前启用的profile
 
 
 
