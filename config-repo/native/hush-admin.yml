@@ -41,7 +41,7 @@ hush-admin:
 
 mybatis:
   mapper-locations: classpath:com/lawrence/hush/mapper/*.xml
-  type-aliases-package: com.lawrence.hush.model, com.lawrence.hush.view
+  type-aliases-package: com.lawrence.hush.model,com.lawrence.hush.view
   config-location: classpath:mybatis-config.xml
 
 pagehelper:
