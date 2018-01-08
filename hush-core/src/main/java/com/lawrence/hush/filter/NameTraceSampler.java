@@ -18,12 +18,12 @@ public class NameTraceSampler implements Sampler {
     private final BitSet sampleDecisions;
     private final SamplerProperties configuration;
 
-    private static Map<String, String> nameStrategy;
+    private static Map<String, String> excludeStrategy;
     static {
-        nameStrategy = new HashMap<>();
-        nameStrategy.put("send-metrics", "");
-        nameStrategy.put("gather-metrics", "");
-        nameStrategy.put("rxjava", "");
+        excludeStrategy = new HashMap<>();
+        excludeStrategy.put("send-metrics", "");
+        excludeStrategy.put("gather-metrics", "");
+        excludeStrategy.put("rxjava", "");
     }
 
     public NameTraceSampler(SamplerProperties configuration) {
@@ -37,7 +37,7 @@ public class NameTraceSampler implements Sampler {
         String name = span.getName();
 
         // 当name为指定值时, 当前span不收集到zipkin
-        if (nameStrategy.containsKey(name)) {
+        if (excludeStrategy.containsKey(name)) {
 
             return false;
         }
