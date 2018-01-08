@@ -16,7 +16,7 @@
 * hush-turbine —— 聚合，通过turbine聚合hystrix发送的客户端metrics，整合hystrix仪表盘，实现客户端访问情况监控。
     主要组件：spring cloud hystrix dashboard，spring cloud turbine，spring security
     
-* hush-monitor —— 监控，通过消息中间件实现的turbine聚合，整合仪表盘，实习那客户端访问情况监控。
+* hush-monitor —— 监控，通过消息中间件实现的turbine聚合，整合仪表盘，实现客户端访问情况监控，重载源码配置解决了仪表盘显示bug。
     主要组件：spring cloud turbine，spring cloud stream，spring security
     
 * hush-zipkin —— 链路追踪，实现分布式系统中网关->客户端->服务端完整链路的记录。
