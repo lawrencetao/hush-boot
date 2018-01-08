@@ -18,6 +18,7 @@ public class NameTraceSampler implements Sampler {
     private final BitSet sampleDecisions;
     private final SamplerProperties configuration;
 
+    /* 排除策略map, 包含key都不收集 */
     private static Map<String, String> excludeStrategy;
     static {
         excludeStrategy = new HashMap<>();
@@ -28,7 +29,7 @@ public class NameTraceSampler implements Sampler {
 
     public NameTraceSampler(SamplerProperties configuration) {
         int outOf100 = (int)(configuration.getPercentage() * 100.0F);
-        this.sampleDecisions = randomBitSet(100, outOf100, new Random());
+        this.sampleDecisions = randomBitSet(outOf100, new Random());
         this.configuration = configuration;
     }
 
@@ -43,7 +44,7 @@ public class NameTraceSampler implements Sampler {
         }
 
         // 按百分比收集
-        if (this.configuration.getPercentage() != 0.0F && span != null) {
+        if (this.configuration.getPercentage() != 0.0F) {
             if (this.configuration.getPercentage() == 1.0F) {
                 return true;
             } else {
@@ -62,8 +63,14 @@ public class NameTraceSampler implements Sampler {
         }
     }
 
-    static BitSet randomBitSet(int size, int cardinality, Random rnd) {
-        BitSet result = new BitSet(size);
+    /*
+     * 获取100长度的BitSet, 随机百分之cardinality的位设置为true
+     *
+     * @param cardinality, rnd
+     * @return BitSet
+     */
+    private static BitSet randomBitSet(int cardinality, Random rnd) {
+        BitSet result = new BitSet(100);
         int[] chosen = new int[cardinality];
 
         int i;
@@ -72,7 +79,7 @@ public class NameTraceSampler implements Sampler {
             result.set(i);
         }
 
-        for(; i < size; ++i) {
+        for(; i < 100; ++i) {
             int j = rnd.nextInt(i + 1);
             if (j < cardinality) {
                 result.clear(chosen[j]);
@@ -83,4 +90,5 @@ public class NameTraceSampler implements Sampler {
 
         return result;
     }
+
 }
