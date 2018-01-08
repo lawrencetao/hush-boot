@@ -1,6 +1,7 @@
 package com.lawrence.hush;
 
 import com.lawrence.hush.filter.NameTraceSampler;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -17,9 +18,19 @@ import org.springframework.web.client.RestTemplate;
 @SpringCloudApplication
 public class WebappApplication {
 
-    /** ribbon-restTemplate超时时间 */
-    private static int connectTimeout = 5000;
-    private static int readTimeout = 5000;
+    /** restTemplate, ribbon默认超时时间 */
+    private static int connectTimeout = 1000;
+    private static int readTimeout = 1000;
+
+    @Value("${ribbon.restTemplate.connectTimeout}")
+    public void setConnectTimeout(int connectTimeout) {
+        WebappApplication.connectTimeout = connectTimeout;
+    }
+
+    @Value("${ribbon.restTemplate.readTimeout}")
+    public void setReadTimeout(int readTimeout) {
+        WebappApplication.readTimeout = readTimeout;
+    }
 
     /**
      * restTemplate配置
