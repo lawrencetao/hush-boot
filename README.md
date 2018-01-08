@@ -40,4 +40,4 @@
 # 技术栈
 * spring cloud微服务框架，spring boot框架，spring mvc框架，mybatis持久层框架，druid数据源，redis缓存，
   spring session共享，spring security安全认证，groovy脚本，swagger2文档生成，fastjson，nio读取文件，logback日志，
-  httpclient请求，spring schedule定时任务
+  httpclient请求，spring schedule定时任务。

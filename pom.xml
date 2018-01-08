@@ -23,16 +23,22 @@
     <!-- 包含模块, 除core以外, 按顺序启动 -->
     <modules>
         <module>hush-core</module>
+
+        <!-- 注册中心和配置中心, 基础组件 -->
         <module>hush-registry</module>
         <module>hush-config</module>
+
+        <!-- 网关, 监控和日志追踪, 功能组件 -->
         <module>hush-gateway</module>
+        <module>hush-monitor</module>
+        <module>hush-zipkin</module>
+
+        <!-- 服务端和客户端, 业务项目 -->
         <module>hush-admin</module>
         <module>hush-webapp</module>
 
-        <!-- 监控组件 -->
-        <module>hush-zipkin</module>
+        <!-- 分组监控 -->
         <module>hush-turbine</module>
-        <module>hush-monitor</module>
     </modules>
 
     <!-- 版本管理 -->
