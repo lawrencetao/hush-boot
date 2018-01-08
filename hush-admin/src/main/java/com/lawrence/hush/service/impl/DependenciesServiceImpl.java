@@ -21,7 +21,7 @@ public class DependenciesServiceImpl implements DependenciesService {
      *
      * @param dependencies
      */
-    @ServiceDataSource(type = SingleProperties.ENUM_TYPE)
+    @ServiceDataSource
     @Override
     public void addSingleDependencies(Dependencies dependencies) {
         dependenciesDao.insertSelective(dependencies);
