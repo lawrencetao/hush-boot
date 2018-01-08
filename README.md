@@ -5,7 +5,7 @@
 
 # 包含服务
 * hush-registry —— 注册中心，通过闭环注册实现高可用eureka注册中心集群。
-    *.主要组件：spring cloud eureka，spring security
+    主要组件：spring cloud eureka，spring security
     
 * hush-config —— 配置中心，统一管理服务和客户端以及网关的配置，可实现高可用配置中心集群。
     主要组件：spring cloud config，spring cloud bus，spring security
