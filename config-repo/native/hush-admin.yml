@@ -15,8 +15,6 @@ spring:
       max-file-size: 100MB
   aop:
     proxy-target-class: true #代理模式Cglib
-  jmx:
-    default-domain: fatalis-webapp
   zipkin:
     base-url: hush-zipkin
   sleuth:
