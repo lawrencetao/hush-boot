@@ -7,6 +7,16 @@ management: #管理配置
   context-path: /hush-management
 
 spring:
+  http:
+    converters:
+      preferred-json-mapper: fastjson
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 100MB
+  aop:
+    proxy-target-class: true #代理模式Cglib
+  jmx:
+    default-domain: fatalis-webapp
   zipkin:
     base-url: hush-zipkin
   sleuth:
