@@ -2,11 +2,14 @@ package com.lawrence.hush;
 
 import com.lawrence.hush.config.AdminProperties;
 import com.lawrence.hush.filter.NameTraceSampler;
+import com.lawrence.hush.listener.ContextRefreshedListener;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.sleuth.sampler.SamplerProperties;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -53,6 +56,15 @@ public class AdminApplication extends WebMvcConfigurerAdapter {
     public NameTraceSampler defaultSampler(SamplerProperties properties) {
 
         return new NameTraceSampler(properties);
+    }
+
+    /**
+     * 容器加载/刷新事件监听器
+     */
+    @Bean
+    public ApplicationListener<ContextRefreshedEvent> applicationListener() {
+
+        return new ContextRefreshedListener();
     }
 
     public static void main(String[] args) {
