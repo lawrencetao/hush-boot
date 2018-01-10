@@ -34,15 +34,15 @@ spring:
 hush-admin:
   switch: #功能开关
     swagger2-open: true #是否开启swagger2
-    multi-datasource-open: true #是否加载multi数据源
+    multi-datasource-open: true #是否开启多数据源
   dynamic: #动态参数, 通过config总线刷新
     param: lawrence
   datasource:
-    single:
+    default: #默认数据源
       url: jdbc:mysql://172.168.0.21:3306/hush?Unicode=true&characterEncoding=utf8&useSSL=false
       username: lima_user
       password: Mysql@1234
-    multi:
+    extra: #其他数据源
       url: jdbc:mysql://172.168.0.21:3306/hush_mirror?Unicode=true&characterEncoding=utf8&useSSL=false
       username: lima_user
       password: Mysql@1234
