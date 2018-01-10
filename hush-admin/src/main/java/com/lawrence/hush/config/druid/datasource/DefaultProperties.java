@@ -1,19 +1,16 @@
 package com.lawrence.hush.config.druid.datasource;
 
-import com.lawrence.hush.config.druid.DruidProperties;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * multi数据源配置
+ * default数据源配置
  */
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "hush-admin.datasource.multi")
-public class MultiProperties implements DruidProperties {
-
-    public static final String ENUM_TYPE = "multi";
+@ConfigurationProperties(prefix = "hush-admin.datasource.default")
+public class DefaultProperties implements DataSourceProperties {
 
     private String url;
     private String username;

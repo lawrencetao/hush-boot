@@ -4,9 +4,8 @@ package com.lawrence.hush.config.druid.datasource;
  * 数据源类型枚举
  */
 public enum DataSourceType {
-
-	single(SingleProperties.ENUM_TYPE, "默认数据源: single"),
-	multi(MultiProperties.ENUM_TYPE, "其他数据源: multi");
+	DEFAULT(DefaultProperties.DATASOURCE_TYPE, "默认数据源: default"),
+	EXTRA(ExtraProperties.DATASOURCE_TYPE, "数据源: extra");
 
     private String type;
     private String name;

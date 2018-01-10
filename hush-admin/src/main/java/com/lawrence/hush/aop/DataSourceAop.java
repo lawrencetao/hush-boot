@@ -1,8 +1,8 @@
 package com.lawrence.hush.aop;
 
 import com.lawrence.hush.annotation.ServiceDataSource;
+import com.lawrence.hush.config.druid.datasource.DataSourceType;
 import com.lawrence.hush.config.druid.datasource.DynamicDataSource;
-import com.lawrence.hush.config.druid.datasource.SingleProperties;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
@@ -58,7 +58,7 @@ public class DataSourceAop implements PriorityOrdered {
     }
 
     /**
-     * 无注解的service方法, 默认single数据源
+     * 无注解的service方法, 默认default数据源
      */
     @Pointcut(value = "execution(* com.lawrence.hush.service.impl..*.*(..)) && " +
             "(!@annotation(com.lawrence.hush.annotation.ServiceDataSource))")
@@ -66,7 +66,7 @@ public class DataSourceAop implements PriorityOrdered {
 
     @Around("isNotAnnotation()")
     public Object defaultDataSource(ProceedingJoinPoint point) throws Throwable {
-        DynamicDataSource.setJdbcType(SingleProperties.ENUM_TYPE);
+        DynamicDataSource.setJdbcType(DataSourceType.DEFAULT.getType());
 
         try {
             return point.proceed();

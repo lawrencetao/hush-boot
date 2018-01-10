@@ -1,8 +1,7 @@
 package com.lawrence.hush.service.impl;
 
 import com.lawrence.hush.annotation.ServiceDataSource;
-import com.lawrence.hush.config.druid.datasource.MultiProperties;
-import com.lawrence.hush.config.druid.datasource.SingleProperties;
+import com.lawrence.hush.config.druid.datasource.ExtraProperties;
 import com.lawrence.hush.dao.DependenciesDao;
 import com.lawrence.hush.model.Dependencies;
 import com.lawrence.hush.service.DependenciesService;
@@ -17,24 +16,24 @@ public class DependenciesServiceImpl implements DependenciesService {
     private DependenciesDao dependenciesDao;
 
     /**
-     * Single数据源, 添加dependencies
+     * 默认数据源, 添加dependencies
      *
      * @param dependencies
      */
     @ServiceDataSource
     @Override
-    public void addSingleDependencies(Dependencies dependencies) {
+    public void addDependencies(Dependencies dependencies) {
         dependenciesDao.insertSelective(dependencies);
     }
 
     /**
-     * Multi数据源, 添加dependencies
+     * extra数据源, 添加dependencies
      *
      * @param dependencies
      */
-    @ServiceDataSource(type = MultiProperties.ENUM_TYPE)
+    @ServiceDataSource(type = ExtraProperties.DATASOURCE_TYPE)
     @Override
-    public void addMultiDependencies(Dependencies dependencies) {
+    public void addExtraDependencies(Dependencies dependencies) {
         dependenciesDao.insertSelective(dependencies);
     }
 

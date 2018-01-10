@@ -5,8 +5,8 @@ import com.lawrence.hush.config.AdminProperties;
 import com.lawrence.hush.config.druid.DruidConfig;
 import com.lawrence.hush.config.druid.datasource.DataSourceType;
 import com.lawrence.hush.config.druid.datasource.DynamicDataSource;
-import com.lawrence.hush.config.druid.datasource.MultiProperties;
-import com.lawrence.hush.config.druid.datasource.SingleProperties;
+import com.lawrence.hush.config.druid.datasource.ExtraProperties;
+import com.lawrence.hush.config.druid.datasource.DefaultProperties;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
@@ -33,42 +33,47 @@ public class MybatisConfig {
     @Resource
     private DruidConfig druidConfig;
 
+    @Resource
+    private DefaultProperties defaultProperties;
+    @Resource
+    private ExtraProperties extraProperties;
+
     /**
      * 加载动态切换数据源
      *
      * @return AbstractRoutingDataSource
      */
     @Bean
-    public AbstractRoutingDataSource dataSource(SingleProperties singleProperties, MultiProperties multiProperties) {
+    public AbstractRoutingDataSource abstractRoutingDataSource() {
 
-        // single数据源
-        DruidDataSource singleDataSource = new DruidDataSource();
-        druidConfig.initDatasource(singleDataSource, singleProperties);
+        // 配置默认数据源
+        DruidDataSource defaultDataSource = new DruidDataSource();
+        druidConfig.initDatasource(defaultDataSource, defaultProperties);
 
-        // 数据源map
+        // 数据源map, 添加默认数据源key/dataSource
         Map<Object, Object> targetDataSources = new HashMap<>();
-        targetDataSources.put(DataSourceType.single.getType(), singleDataSource);
+        targetDataSources.put(DataSourceType.DEFAULT.getType(), defaultDataSource);
 
-        // 是否开启multi数据源
-        boolean multi = adminProperties.getMultiDatasourceOpen();
-        if (multi) {
+        // 是否开启extra数据源
+        boolean multiOpen = adminProperties.getMultiDataSourceOpen();
+        if (multiOpen) {
 
-            // multi数据源
-            DruidDataSource multiDataSource = new DruidDataSource();
-            druidConfig.initDatasource(multiDataSource, multiProperties);
+            // 配置extra数据源
+            DruidDataSource extraDataSource = new DruidDataSource();
+            druidConfig.initDatasource(extraDataSource, extraProperties);
 
-            targetDataSources.put(DataSourceType.multi.getType(), multiDataSource);
+            targetDataSources.put(DataSourceType.EXTRA.getType(), extraDataSource);
         }
 
         // 数据源key和url对应的map
         Map<String, String> keyUrlMap = new HashMap<>();
-        keyUrlMap.put(DataSourceType.single.getType(), singleProperties.getUrl());
-        keyUrlMap.put(DataSourceType.multi.getType(), multiProperties.getUrl());
+        keyUrlMap.put(DataSourceType.DEFAULT.getType(), defaultProperties.getUrl());
+        keyUrlMap.put(DataSourceType.EXTRA.getType(), extraProperties.getUrl());
 
         DynamicDataSource dynamicDataSource = new DynamicDataSource(keyUrlMap);
 
         // 默认数据源
-        dynamicDataSource.setDefaultTargetDataSource(singleDataSource);
+        dynamicDataSource.setDefaultTargetDataSource(defaultDataSource);
 
         // 数据源map, 包含所有数据源
         dynamicDataSource.setTargetDataSources(targetDataSources);
@@ -92,10 +97,10 @@ public class MybatisConfig {
      *
      * @return DataSourceTransactionManager
      */
-    @Bean(name = "transactionManager")
-    public DataSourceTransactionManager transactionManager(AbstractRoutingDataSource dataSource) {
+    @Bean
+    public DataSourceTransactionManager transactionManager(AbstractRoutingDataSource abstractRoutingDataSource) {
 
-        return new DataSourceTransactionManager(dataSource);
+        return new DataSourceTransactionManager(abstractRoutingDataSource);
     }
 
 }

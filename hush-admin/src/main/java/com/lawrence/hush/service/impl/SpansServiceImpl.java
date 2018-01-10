@@ -3,7 +3,7 @@ package com.lawrence.hush.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.lawrence.hush.annotation.ServiceDataSource;
-import com.lawrence.hush.config.druid.datasource.MultiProperties;
+import com.lawrence.hush.config.druid.datasource.ExtraProperties;
 import com.lawrence.hush.dao.SpansDao;
 import com.lawrence.hush.model.Spans;
 import com.lawrence.hush.service.SpansService;
@@ -20,14 +20,14 @@ public class SpansServiceImpl implements SpansService {
     private SpansDao spansDao;
 
     /**
-     * Single数据源, 根据name查询spans
+     * 默认数据源, 根据name查询spans
      *
      * @param name
      * @return List<Spans>
      */
     @ServiceDataSource
     @Override
-    public List<Spans> querySingleByName(String name) {
+    public List<Spans> queryByName(String name) {
         Page<Spans> page = PageHelper.startPage(5, 10);
         spansDao.query(name);
 
@@ -37,14 +37,14 @@ public class SpansServiceImpl implements SpansService {
     }
 
     /**
-     * Multi数据源, 根据name查询spans
+     * extra数据源, 根据name查询spans
      *
      * @param name
      * @return List<Spans>
      */
-    @ServiceDataSource(type = MultiProperties.ENUM_TYPE)
+    @ServiceDataSource(type = ExtraProperties.DATASOURCE_TYPE)
     @Override
-    public List<Spans> queryMultiByName(String name) {
+    public List<Spans> queryExtraByName(String name) {
         Page<Spans> page = PageHelper.startPage(5, 10);
         spansDao.query(name);
 

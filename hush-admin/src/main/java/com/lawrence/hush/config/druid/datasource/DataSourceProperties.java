@@ -1,9 +1,12 @@
-package com.lawrence.hush.config.druid;
+package com.lawrence.hush.config.druid.datasource;
 
 /**
  * 数据源配置接口
  */
-public interface DruidProperties {
+public interface DataSourceProperties {
+
+    // 数据源key
+    String DATASOURCE_TYPE = "default";
 
     String getUrl();
     String getUsername();

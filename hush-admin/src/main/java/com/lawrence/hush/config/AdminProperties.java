@@ -14,6 +14,6 @@ public class AdminProperties {
     @Value("${hush-admin.switch.swagger2-open}")
     private Boolean swagger2Open;
     @Value("${hush-admin.switch.multi-datasource-open}")
-    private Boolean multiDatasourceOpen;
+    private Boolean multiDataSourceOpen;
 
 }

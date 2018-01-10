@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface SpansService {
 
-    List<Spans> querySingleByName(String name);
-    List<Spans> queryMultiByName(String name);
+    List<Spans> queryByName(String name);
+    List<Spans> queryExtraByName(String name);
 
 }

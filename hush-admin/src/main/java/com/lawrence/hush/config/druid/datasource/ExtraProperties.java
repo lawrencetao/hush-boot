@@ -1,19 +1,18 @@
 package com.lawrence.hush.config.druid.datasource;
 
-import com.lawrence.hush.config.druid.DruidProperties;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * single数据源配置
+ * extra数据源配置
  */
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "hush-admin.datasource.single")
-public class SingleProperties implements DruidProperties {
+@ConfigurationProperties(prefix = "hush-admin.datasource.extra")
+public class ExtraProperties implements DataSourceProperties {
 
-    public static final String ENUM_TYPE = "single";
+    public static final String DATASOURCE_TYPE = "extra";
 
     private String url;
     private String username;

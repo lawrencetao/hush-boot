@@ -4,7 +4,7 @@ import com.lawrence.hush.model.Dependencies;
 
 public interface DependenciesService {
 
-    void addSingleDependencies(Dependencies dependencies);
-    void addMultiDependencies(Dependencies dependencies);
+    void addDependencies(Dependencies dependencies);
+    void addExtraDependencies(Dependencies dependencies);
 
 }

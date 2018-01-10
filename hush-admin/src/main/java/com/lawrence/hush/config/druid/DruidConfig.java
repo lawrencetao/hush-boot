@@ -3,6 +3,7 @@ package com.lawrence.hush.config.druid;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
+import com.lawrence.hush.config.druid.datasource.DataSourceProperties;
 import com.lawrence.hush.util.LogUtil;
 import com.lawrence.hush.util.StringUtil;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -23,7 +24,7 @@ public class DruidConfig {
      *
      * @param dataSource
      */
-    public void initDatasource(DruidDataSource dataSource, DruidProperties properties) {
+    public void initDatasource(DruidDataSource dataSource, DataSourceProperties properties) {
         dataSource.setUrl(properties.getUrl());
         dataSource.setUsername(properties.getUsername());
         String password = properties.getPassword();
