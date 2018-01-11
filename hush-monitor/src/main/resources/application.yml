@@ -1,5 +1,5 @@
 server:
-  port: 8781
+  port: 8771
 
 eureka:
   instance:
@@ -28,9 +28,23 @@ turbine:
     port: 8989 #turbine-stream聚合端口
 
 spring:
+  boot:
+    admin:
+      routes:
+        endpoints: env,metrics,trace,dump,jolokia,info,configprops,logfile,refresh,flyway,liquibase,heapdump,loggers,auditevents,hystrix.stream
+      turbine:
+        clusters: default
+        location: http://localhost:${turbine.stream.port}
+      discovery:
+        converter:
+          management-context-path: /hush-management
   rabbitmq:
     virtual-host: /
     host: localhost
     port: 5672
     username: lawrence
     password: lawrence
+
+logging:
+  level:
+    org.springframework.cloud.netflix.zuul.filters.post.SendErrorFilter: error #admin网关sendErrorFilter日志级别

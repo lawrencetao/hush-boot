@@ -51,6 +51,26 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
-	</dependencies>
+        <!-- spring-boot-admin依赖 -->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-server-ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-server-ui-turbine</artifactId>
+        </dependency>
+
+        <!-- jmx依赖 -->
+        <dependency>
+            <groupId>org.jolokia</groupId>
+            <artifactId>jolokia-core</artifactId>
+        </dependency>
+
+    </dependencies>
 
 </project>
