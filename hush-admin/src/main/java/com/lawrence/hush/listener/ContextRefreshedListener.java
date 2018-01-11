@@ -22,7 +22,7 @@ public class ContextRefreshedListener implements ApplicationListener<ContextRefr
         if (!started) {
             started = true;
 
-            LogUtil.info(getClass(), "ContextRefreshedEvent监听事件调用, Hush-boot: Spring容器加载完成");
+            LogUtil.info(getClass(), "ContextRefreshedEvent监听事件调用, Hush-admin: Spring容器加载完成");
 
         }
     }
